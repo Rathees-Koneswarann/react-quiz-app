@@ -1,5 +1,5 @@
 import './App.css';
-
+import Reducer from './Reducer'
 //components
 import Settings from './components/Settings';
 
