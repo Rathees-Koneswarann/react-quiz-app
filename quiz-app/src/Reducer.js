@@ -57,6 +57,19 @@ const Reducer = (state = initState, action) => {
                 ...state,
                 questions: action.questions
             }
+
+        case "SET_INDEX":
+            return {
+                ...state,
+                index: action.index
+            }
+
+        case "SET_SCORE":
+            return {
+                ...state,
+                score: action.score
+            }
+
         default:
             return state
     }
