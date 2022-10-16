@@ -1,45 +1,64 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 function Settings() {
-    // useState hook 
-    const [loading, setLoading] = useState(false);
     const [options, setOptions] = useState(null);
-    const [questionCategory, setQuestionCategory] = useState("");
-    const [questionDifficulty, setQuestionDifficulty] = useState("");
-    const [questionType, setQuestionType] = useState("");
-    const [numberOfQuestions, setNumberOfQuestions] = useState(50);
+    const loading = useSelector(state => state.options.loading)
+    const questionCategory = useSelector(state => state.options.question_category)
+    const questionDifficulty = useSelector(state => state.options.question_difficulty)
+    const questionType = useSelector(state => state.options.question_type)
+    const questionAmount = useSelector(state => state.options.amount_of_questions)
+
+    const dispatch = useDispatch()
     // useEffect hook
     useEffect(() => {
         const apiUrl = `https://opentdb.com/api_category.php`;
-        setLoading(true);
+
+        const handleLoadingChange = value => {
+            dispatch({
+                type: 'CHANGE_LOADING',
+                loading: value
+            })
+        }
+
+        handleLoadingChange(true);
 
         fetch(apiUrl)
             .then((res) => res.json())
             .then((response) => {
-                setLoading(false);
-                setOptions(response.trivia_categories);
+                handleLoadingChange(false);
             }).catch(err => {
                 console.log(err)
             })
 
-    }, [setOptions]);
+    }, [setOptions, dispatch]);
 
     // event that is called when an option is chosen
     const handleCategoryChange = event => {
-        setQuestionCategory(event.target.value)
+        dispatch({
+            type: 'CHANGE_CATEGORY',
+            value: event.target.value
+        })
     }
-
     const handleDifficultyChange = event => {
-        setQuestionDifficulty(event.target.value)
+        dispatch({
+            type: 'CHANGE_DIFFICULTY',
+            value: event.target.value
+        })
     }
-
     const handleTypeChange = event => {
-        setQuestionType(event.target.value)
+        dispatch({
+            type: 'CHANGE_TYPE',
+            value: event.target.value
+        })
+    }
+    const handleAmountChange = event => {
+        dispatch({
+            type: 'CHANGE_AMOUNT',
+            value: event.target.value
+        })
     }
 
-    const handleAmountChange = event => {
-        setNumberOfQuestions(event.target.value)
-    }
     if (!loading) {
         return (
             <div>
@@ -74,7 +93,7 @@ function Settings() {
                 </div>
                 <div>
                     <h2>Amount of Questions:</h2>
-                    <input value={numberOfQuestions} onChange={handleAmountChange} />
+                    <input value={questionAmount} onChange={handleAmountChange} />
                 </div>
             </div>
         )
