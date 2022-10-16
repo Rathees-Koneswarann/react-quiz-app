@@ -74,7 +74,7 @@ function Settings() {
                 </div>
                 <div>
                     <h2>Amount of Questions:</h2>
-                    <input value={numberOfQuestions} onChange={handleNumberOfQuestions} />
+                    <input value={numberOfQuestions} onChange={handleAmountChange} />
                 </div>
             </div>
         )
