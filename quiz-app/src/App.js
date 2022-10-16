@@ -1,9 +1,13 @@
 import './App.css';
 
+//components
+import Settings from './components/Settings';
+
 function App() {
   return (
     <div className="App">
-      Hello reo
+      <h1>Quizz App</h1>
+      <Settings/>
     </div>
   );
 }
