@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 
-import Settings from './Components/Settings'
-import Question from './Components/Question'
-import FinalScreen from './Components/FinalScreen'
+import Settings from './components/Settings'
+import Question from './components/Questions'
+import FinalScreen from './components/FinalScreen'
 
 import './App.css'
 

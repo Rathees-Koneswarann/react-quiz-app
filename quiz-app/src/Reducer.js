@@ -1,12 +1,15 @@
 const initState = {
     options: {
-        loading: false,
-        question_category: ``,
-        question_difficulty: ``,
-        question_type: ``,
-        amount_of_questions: 50
-    }
-}
+      loading: false,
+      question_category: ``,
+      question_difficulty: ``,
+      question_type: ``,
+      amount_of_questions: 50,
+    },
+    questions: [],
+    index: 0,
+    score: 0,
+  }
 
 const Reducer = (state = initState, action) => {
     switch (action.type) {
